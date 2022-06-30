@@ -84,7 +84,7 @@ const CartList = ({cartItems}) => {
                 </li>
                 <li>
                     <button className='primary-button'
-                    onClick={()=>router.push('/shipping')}
+                    onClick={()=>router.push('login?redirect=/shipping')}
                     >Check out</button>
                 </li>
             </ul>

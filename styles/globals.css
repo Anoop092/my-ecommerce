@@ -25,3 +25,8 @@ a {
 .primary-button {
   @apply w-full rounded-lg bg-orange-300 py-2 text-white text-lg shadow outline-none hover:bg-orange-500 
 }
+input,
+select,
+textarea{
+  @apply rounded border p-2 outline-none ring-indigo-300 focus:ring;
+}
