@@ -1,6 +1,7 @@
 import React, { useContext, useReducer } from 'react';
 import reducer from './reducer';
-import {data} from './products'
+import {data} from './products';
+import {useRouter} from 'next/router'
 
 export const Store = React.createContext();
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
 
 export const StoreProvider = ({children})=>{
     const [state,dispatch] = useReducer(reducer,initialState);
+    const router = useRouter();
     const addToCartHandler =(slug)=>{
         const product = data.products.find((item)=>item.slug===slug);
       
@@ -22,9 +24,13 @@ export const StoreProvider = ({children})=>{
             return;
         }
 
-       dispatch({type:'Cart_ADD_ITEM',payload:{...product,quantity}})
+       dispatch({type:'Cart_ADD_ITEM',payload:{...product,quantity}});
+       router.push('/cart');
     }
-    const value = {state,dispatch,addToCartHandler};
+    const removeCartHandler = (item)=>{
+        dispatch({type:'Cart_Delete_Item',payload:item})
+    }
+    const value = {state,dispatch,addToCartHandler,removeCartHandler};
     return(
     <Store.Provider value = {value}>
         {children}
