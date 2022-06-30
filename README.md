@@ -12,3 +12,5 @@
    3.add main-section
    4.add footer
    5 add tailwind class
+3. Creating a list of Products
+   1.Add data to the project 2. add images 3. render products

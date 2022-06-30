@@ -18,3 +18,10 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.card {
+  @apply mb-5 block rounded-lg border-gray-200 shadow
+}
+.primary-button {
+  @apply w-full rounded-lg bg-orange-300 py-2 text-white text-lg shadow outline-none hover:bg-orange-500 
+}
