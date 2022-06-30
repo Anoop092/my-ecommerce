@@ -5,7 +5,7 @@ import {XCircleIcon} from  '@heroicons/react/outline';
 import useGlobalContext from '../utils/Store';
 
 const CartList = ({cartItems}) => {
- const {removeCartHandler} = useGlobalContext();
+ const {removeCartHandler,updateCartHandler} = useGlobalContext();
   return (
     <div className='grid md:grid-cols-4 md:gap-5'>
         <div className='overflow-x-auto md:col-span-3'>
@@ -40,7 +40,17 @@ const CartList = ({cartItems}) => {
                                 </Link>
                             </td>
                             <td className='p-5 text-right'>
-                                {item.quantity}
+                                <select value={item.quantity} onChange={(e)=>updateCartHandler(item,e.target.value)}>
+                                {
+                                [...Array(item.countInStock).keys()].map(x=>(
+                                    <option key={x+1} value={x+1}>
+                                        {x+1}
+
+
+                                    </option>
+                                ))
+                                }
+                                </select>
 
                             </td>
                              <td className='p-5 text-right'>

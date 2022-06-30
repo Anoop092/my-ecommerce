@@ -30,7 +30,11 @@ export const StoreProvider = ({children})=>{
     const removeCartHandler = (item)=>{
         dispatch({type:'Cart_Delete_Item',payload:item})
     }
-    const value = {state,dispatch,addToCartHandler,removeCartHandler};
+    const updateCartHandler =(item,qty)=>{
+        const quantity = Number(qty);
+        dispatch({type:'Cart_ADD_ITEM',payload:{...item,quantity}});
+    }
+    const value = {state,dispatch,addToCartHandler,removeCartHandler,updateCartHandler};
     return(
     <Store.Provider value = {value}>
         {children}
