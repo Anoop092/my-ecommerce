@@ -1,11 +1,13 @@
 import React, { useContext, useReducer } from 'react';
+import Cookies from 'js-cookie';
 import reducer from './reducer';
 import {data} from './products';
 import {useRouter} from 'next/router'
 
+
 export const Store = React.createContext();
 const initialState = {
-    cart:{
+    cart:Cookies.get('cart')?JSON.parse(Cookies.get('cart')):{
         cartItems:[]
     }
 

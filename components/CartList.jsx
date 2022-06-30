@@ -2,10 +2,12 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import {XCircleIcon} from  '@heroicons/react/outline';
+import {useRouter} from 'next/router'
 import useGlobalContext from '../utils/Store';
 
 const CartList = ({cartItems}) => {
  const {removeCartHandler,updateCartHandler} = useGlobalContext();
+ const router = useRouter();
   return (
     <div className='grid md:grid-cols-4 md:gap-5'>
         <div className='overflow-x-auto md:col-span-3'>

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Layout from '../../components/Layout';
 import useGlobalContext from '../../utils/Store'
 import { CartList } from '../../components';
+import dynamic from 'next/dynamic'
 
 const CartScreen = () => {
     const {state,dispatch} = useGlobalContext();
@@ -25,4 +26,4 @@ const CartScreen = () => {
   )
 }
 
-export default CartScreen
+export default dynamic (()=>Promise.resolve(CartScreen),{ssr:false})

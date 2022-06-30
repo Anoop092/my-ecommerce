@@ -5,9 +5,15 @@ import useGlobalContext from '../utils/Store'
 
 const Layout = ({children,title}) => {
     const {state,dispatch} = useGlobalContext();
+    const [count,setCount] = useState(0);
     
     const {cart} = state;
-    console.log(cart.cartItems);
+    useEffect(()=>{
+    
+    
+         setCount(cart.cartItems.reduce((sum,cur)=>sum+cur.quantity,0));
+},[cart.cartItems]);
+    
 
     
     
@@ -28,10 +34,10 @@ const Layout = ({children,title}) => {
                 <Link href='/cart'>
                     <a className='text-xl p-2'>
                         Cart
-                         {cart?.cartItems?.length>0 && (
+                         {count>0 && (
                             <span className='ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white'>
-                                { cart.cartItems.reduce((sum,cur)=>sum+parseInt(cur.quantity),0)
-                                
+                                { 
+                                  count
                                 }
                                 
                             </span>

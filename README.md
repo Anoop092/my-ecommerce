@@ -32,3 +32,6 @@
    2. use Context to get cart items
    3. list items in cart items
    4. redirect to cart seen after adding to cart
+7. Adding cart to cookies
+   1. install js-cookies package
+   2. save and retreive cart items from cookies
