@@ -1,7 +1,7 @@
  export const data = 
     {
         products:[{
-            name:'free shirt',
+            name:'Free shirt',
             slug:'free-shirt',
             category:'Shirts',
             image:'/images/shirt1.jpg',
@@ -15,7 +15,7 @@
 
         },
         {
-            name:'fit shirt',
+            name:'Fit shirt',
             slug:'fit-shirt',
             category:'Shirts',
             image:'/images/shirt2.jpg',
@@ -29,7 +29,7 @@
 
         },
         {
-            name:'slim shirt',
+            name:'Slim shirt',
             slug:'slim-shirt',
             category:'Shirts',
             image:'/images/shirt3.jpg',
@@ -57,7 +57,7 @@
 
         },
         {
-            name:'fit pants',
+            name:'Fit pants',
              slug:'fit-pant',
             category:'pants',
             image:'/images/pants2.jpg',
