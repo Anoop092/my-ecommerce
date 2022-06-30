@@ -1,8 +1,16 @@
 import Head from 'next/head'
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import Link from 'next/link'
+import useGlobalContext from '../utils/Store'
 
 const Layout = ({children,title}) => {
+    const {state,dispatch} = useGlobalContext();
+    
+    const {cart} = state;
+    console.log(cart.cartItems);
+
+    
+    
   return (
     <>
     <Head>
@@ -17,7 +25,21 @@ const Layout = ({children,title}) => {
                 <a className='text-2xl  font-bold'>Developers Shop</a>
                 </Link>
             <div>
-                <Link href='/cart'><a className='text-xl p-2'>Cart</a></Link>
+                <Link href='/cart'>
+                    <a className='text-xl p-2'>
+                        Cart
+                         {cart?.cartItems?.length>0 && (
+                            <span className='ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white'>
+                                { cart.cartItems.reduce((sum,cur)=>sum+parseInt(cur.quantity),0)
+                                
+                                }
+                                
+                            </span>
+                        )}
+                       
+                    </a>
+                </Link>
+                
                 <Link href='/login'><a className='text-xl p-2'>Login</a></Link>
             </div>
             </nav>
