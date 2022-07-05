@@ -1,11 +1,15 @@
 import Head from 'next/head'
 import React, { useEffect,useState } from 'react'
+import { ToastContainer } from 'react-toastify';
 import Link from 'next/link'
 import useGlobalContext from '../utils/Store'
+import {useSession} from 'next-auth/react';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Layout = ({children,title}) => {
     const {state,dispatch} = useGlobalContext();
     const [count,setCount] = useState(0);
+    const {status,data:session} = useSession()
     
     const {cart} = state;
     useEffect(()=>{
@@ -23,6 +27,7 @@ const Layout = ({children,title}) => {
         <title>{title?`${title}-Developers Shop`:'Developers Shop'}</title>
         <meta name='description' content='the shoping-zone for developers' />
         <link rel='icon' href='/favicon.ico' />
+        <ToastContainer position='bottom-center' limit={1} />
     </Head>
     <div className='flex min-h-screen flex-col justify-between'>
         <header>
@@ -45,8 +50,16 @@ const Layout = ({children,title}) => {
                        
                     </a>
                 </Link>
+                {
+                    status === 'loading' ? ('Loading'): session?.user ?session.user.name:(
+                    <Link href='/login'>
+                        <a className='text-xl p-2'>Login</a>
+                    </Link>
+                    )
+
+                }
                 
-                <Link href='/login'><a className='text-xl p-2'>Login</a></Link>
+                
             </div>
             </nav>
 
