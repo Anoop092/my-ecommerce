@@ -16,6 +16,16 @@ export default  function reducer(state,action){
     
 
         }
+        case 'CART_RESET':{
+            return{
+                ...state,
+                cart:{
+                    cartItems:[],
+                    shippingAddress:{location:{}},
+                    paymentMethod: '',
+                }
+            }
+        }
         default:
             return state
     }

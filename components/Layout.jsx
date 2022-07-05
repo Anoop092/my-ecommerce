@@ -3,8 +3,11 @@ import React, { useEffect,useState } from 'react'
 import { ToastContainer } from 'react-toastify';
 import Link from 'next/link'
 import useGlobalContext from '../utils/Store'
-import {useSession} from 'next-auth/react';
+import {signOut, useSession} from 'next-auth/react';
 import 'react-toastify/dist/ReactToastify.css';
+import { Menu } from '@headlessui/react';
+import DropdownLink from './DropdownLink'
+import Cookies from 'js-cookie';
 
 const Layout = ({children,title}) => {
     const {state,dispatch} = useGlobalContext();
@@ -13,11 +16,14 @@ const Layout = ({children,title}) => {
     
     const {cart} = state;
     useEffect(()=>{
+     setCount(cart.cartItems.reduce((sum,cur)=>sum+cur.quantity,0));
+    },[cart.cartItems]);
     
-    
-         setCount(cart.cartItems.reduce((sum,cur)=>sum+cur.quantity,0));
-},[cart.cartItems]);
-    
+    function logoutClickHandler(){
+        Cookies.remove('cart');
+        dispatch({type:'CART_RESET'});
+        signOut({callbackUrl:'/login'});
+    }
 
     
     
@@ -51,7 +57,29 @@ const Layout = ({children,title}) => {
                     </a>
                 </Link>
                 {
-                    status === 'loading' ? ('Loading'): session?.user ?session.user.name:(
+                    status === 'loading' ? ('Loading'): session?.user ?(
+                        <Menu as='div' className='relative inline-block'>
+                            <Menu.Button className='text-blue-600'>
+                               { session.user.name}
+                            </Menu.Button>
+                            <Menu.Items className='absolute right-0 w-56 origin-top-right bg-white shadow-lg'>
+                                <Menu.Item>
+                                    <DropdownLink className='dropdown-link' href='/profile'>Profile</DropdownLink>
+                                </Menu.Item>
+                                <Menu.Item>
+                                    <DropdownLink className='order-history' href='/order-history'>Order History</DropdownLink>
+                                </Menu.Item>
+                                <Menu.Item>
+                                   <a href='#' className='dropdown-link' onClick={logoutClickHandler}>
+                                       
+                                     Logout
+                                   </a>
+                                </Menu.Item>
+
+                            </Menu.Items>
+
+                        </Menu>
+                    ):(
                     <Link href='/login'>
                         <a className='text-xl p-2'>Login</a>
                     </Link>
