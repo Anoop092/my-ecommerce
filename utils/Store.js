@@ -8,7 +8,7 @@ import {useRouter} from 'next/router'
 export const Store = React.createContext();
 const initialState = {
     cart:Cookies.get('cart')?JSON.parse(Cookies.get('cart')):{
-        cartItems:[]
+        cartItems:[],shippingAddress:{}
     }
 
 }
