@@ -14,7 +14,7 @@ const ShippingScreen = () => {
   const router = useRouter()
   useEffect(()=>{
    
-    console.log(JSON.parse(Cookies.get('cart')));
+    
     
     setValue('fullName',shippingAddress?.fullName);
     setValue('address',shippingAddress?.address);

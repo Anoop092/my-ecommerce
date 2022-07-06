@@ -57,3 +57,10 @@
 12. create shipping screen
     1. display address fields
     2. save address in context
+13. create payment screen
+    1. display payment method
+    2. save payment method in context
+14. seed sample product
+    1. insert sample product to mongodb
+    2. load products from db in home and product screen
+    3. check product count in stock and add to cart
