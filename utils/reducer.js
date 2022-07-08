@@ -3,6 +3,7 @@ export default  function reducer(state,action){
     switch (action.type) {
         case 'Cart_ADD_ITEM':
             const newItem = action.payload;
+            
             const existsItem=state.cart.cartItems.find((item)=>item.slug===newItem.slug);
              const cartItems = existsItem? state.cart.cartItems.map((item)=>item.name===existsItem.name?newItem:item):[...state.cart.cartItems,newItem];
              Cookies.set('cart',JSON.stringify({...state.cart.cartItems,cartItems,shippingAddress:{...state.cart.shippingAddress}}),{ expires: 7 });

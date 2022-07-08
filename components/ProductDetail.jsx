@@ -2,8 +2,10 @@ import Image from 'next/image'
 import React from 'react'
 import useGlobalContext from '../utils/Store'
 
-const ProductDetail = ({name,image,category,brand,rating,numReviews,description,countInStock,price,slug}) => {
+const ProductDetail = ({product}) => {
+    const {name,image,category,brand,rating,numReviews,description,countInStock,price,slug,_id} = product
     const {state,dispatch,addToCartHandler} = useGlobalContext();
+   
     
   return (
     <div className='grid grid-cols-1 md:grid-cols-4 md: gap-3'>
@@ -50,7 +52,7 @@ const ProductDetail = ({name,image,category,brand,rating,numReviews,description,
 
 
                 </div>
-                <button className='primary-button' onClick={()=>addToCartHandler(slug)}>
+                <button className='primary-button' onClick={()=>addToCartHandler(slug,_id,product)}>
                     Add to Cart
                 </button>
 

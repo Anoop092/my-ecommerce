@@ -1,8 +1,11 @@
 import Link from 'next/link'
 import React from 'react'
+import useGlobalContext from '../utils/Store'
 
 
-const ProductItem = ({slug,image,name,price,brand}) => {
+const ProductItem = ({product}) => {
+    const {slug,image,name,price,brand,_id} = product
+    const {addToCartHandler} = useGlobalContext()
   return (
     <div className='card'>
         <Link href={`/products/${slug}`}>
@@ -25,7 +28,7 @@ const ProductItem = ({slug,image,name,price,brand}) => {
             </Link>
             <p className='mb-2'>{brand}</p>
             <p className='mb-2'>{price}</p>
-            <button className='w-full rounded-lg bg-orange-500 py-2 text-white text-lg shadow outline-none hover:bg-orange-300 ' type='btn'>
+            <button className='w-full rounded-lg bg-orange-500 py-2 text-white text-lg shadow outline-none hover:bg-orange-300 ' type='btn' onClick={()=>{addToCartHandler(slug,_id,product)}}>
                 Add to Cart
             </button>
 

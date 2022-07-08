@@ -16,6 +16,7 @@ const Layout = ({children,title}) => {
     
     const {cart} = state;
     useEffect(()=>{
+        
      setCount(cart.cartItems.reduce((sum,cur)=>sum+cur.quantity,0));
     },[cart.cartItems]);
     
@@ -33,8 +34,9 @@ const Layout = ({children,title}) => {
         <title>{title?`${title}-Developers Shop`:'Developers Shop'}</title>
         <meta name='description' content='the shoping-zone for developers' />
         <link rel='icon' href='/favicon.ico' />
-        <ToastContainer position='bottom-center' limit={1} />
+        
     </Head>
+    <ToastContainer position='bottom-center' limit={1} />
     <div className='flex min-h-screen flex-col justify-between'>
         <header>
             <nav className='flex h-12 shadow-md py-5 px-3 bg-white items-center justify-between'>
