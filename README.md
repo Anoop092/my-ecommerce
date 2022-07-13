@@ -76,6 +76,12 @@
     4. implement create order
 
 17. Create Order Screen
+
     1. implement backend api for order details
     2. load order data from backend
     3. display order details
+
+18. Create Register Screen
+    1. add signup api
+    2. create register page
+    3. call api on form submit.
